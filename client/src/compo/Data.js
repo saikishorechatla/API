@@ -15,16 +15,17 @@ const Data = () => {
       .then((response) => {
       
         setData(response.data);
-        console.log(response.data);
-      })
+        
+       })
       .catch((error) => {
       
         console.error(error);
       });
   }, []); 
-
+    
   return (
     <div className="data-container">
+       
 
       <Table data={data}/>
 

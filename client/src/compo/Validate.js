@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import moment from 'moment';
+import { saveAs } from 'file-saver';
 
 const Validate = () => {
   const [data, setData] = useState([]);
@@ -28,6 +28,19 @@ const Validate = () => {
     getUserData();
   }, []);
 
+  const handleDownload = (filename) => {
+    axios
+      .get(`http://localhost:5010/uploads/${filename}`, {
+        responseType: 'blob', // Set the response type to blob to handle binary data
+      })
+      .then(response => {
+        saveAs(response.data, filename+".png");
+      })
+      .catch(error => {
+        console.error("Error downloading image:", error);
+      });
+  };
+
   return (
     <div className="container mt-2">
       <h1 className="text-center mt-2">Image Upload Projects With Mysql database</h1>
@@ -36,11 +49,8 @@ const Validate = () => {
         {data.length > 0 &&
           data.map((el, i) => (
             <div key={i} className="mb-3" style={{ width: '22rem', height: '18rem' }}>
-              <img src={`http://localhost:5010/uploads/${el.file}`} alt="User Upload" style={{ width: '400px', textAlign: 'center', margin: 'auto' }} className="mt-2" />
-              <div className="text-center">
-                <h5>UserName : {el.username}</h5>
-                <p>Date Added : {moment(el.date).format("DD-MM-YYYY")}</p>
-              </div>
+              <img src={`http://localhost:5010/uploads/${el.file}`} alt="User Upload" style={{ width: '700px', textAlign: 'center', margin: 'auto' }} className="mt-2" />
+              <button onClick={() => handleDownload(el.file)}>Download</button>
             </div>
           ))}
       </div>

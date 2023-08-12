@@ -45,6 +45,8 @@ router.get("/", (req, res) => {
   });
   router.post("/add",upload.single("photo"),(req,res)=>{
     const {filename} = req.file;
+    const {  selectedCertificate,textInput } = req.body;
+    
 
   
     if( !filename){
@@ -53,8 +55,8 @@ router.get("/", (req, res) => {
     
     try {
 
-         db.query("INSERT INTO test2 (file) VALUES (?);",filename,(err,result)=>{
-          console.log(filename+" 233")
+         db.query("INSERT INTO test2 (file,emp_id, title_of_certification) VALUES (?,?,?);",[filename,textInput, selectedCertificate],(err,result)=>{
+
             if(err){
                 console.log(err)
             }else{
