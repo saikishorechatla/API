@@ -9,7 +9,7 @@ var imgconfig = multer.diskStorage({
       callback(null,"./uploads");
   },
   filename:(req,file,callback)=>{
-      callback(null,`${Date.now()}`)
+      callback(null,`${Date.now()}`+".png")
       nameOfFile=file.originalname
       console.log(file.originalname)
   },
@@ -68,6 +68,25 @@ router.get("/", (req, res) => {
         res.status(422).json({status:422,error})
     }
 });
+router.post("/bulk", (req, res) => {
+    const { CSVDATA } = req.body;
+    try{
+    db.query(CSVDATA,(err,result)=>{
+
+        if(err){
+            console.log(err)
+        }else{
+            console.log("data added")
+            res.status(201).json({status:201,data:req.body})
+        }
+    })
+}catch (error) {
+    res.status(422).json({status:422,error})
+}
+    
+  });
+ 
+
 router.get("/getdata",(req,res)=>{
   try {
       db.query("SELECT * FROM test2",(err,result)=>{

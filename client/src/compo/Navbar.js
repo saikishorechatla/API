@@ -13,6 +13,14 @@ const Navbar = () => {
     <nav className="navbar">
       <div className="navbar__ul">
         <ul className="navbar__list">
+        <NavLink to="/bulkadd">
+          <li
+            className={`navbar__item${activeItem === "add" ? " active" : ""}`}
+            onClick={() => handleItemClick("add") }
+          >
+            <span className="navbar__icon">➕➕</span>BulkAdd
+          </li>
+          </NavLink>
           <NavLink to="/add">
           <li
             className={`navbar__item${activeItem === "add" ? " active" : ""}`}

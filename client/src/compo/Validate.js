@@ -34,7 +34,7 @@ const Validate = () => {
         responseType: 'blob', // Set the response type to blob to handle binary data
       })
       .then(response => {
-        saveAs(response.data, filename+".png");
+        saveAs(response.data, filename );
       })
       .catch(error => {
         console.error("Error downloading image:", error);
