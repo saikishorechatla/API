@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import Papa from "papaparse";
 import axios from "axios"; // Import the axios library
 
+
 const BulkAdd = () => {
   const [csvData, setCsvData] = useState([]);
   const [jsonData, setJsonData] = useState([]);
   const [fileError, setFileError] = useState(null);
-
+  const [CSVDATA,setCSVDATA]=useState("");
   const handleFileUpload = (event) => {
     const file = event.target.files[0];
 
@@ -49,21 +50,10 @@ const BulkAdd = () => {
             .slice(1) // Remove the first column
             .join(", ")}) VALUES ${queries.join(", ")};`;
 
-          const CSVDATA = insertQuery;
+          setCSVDATA(insertQuery); // Assign the insertQuery to CSVDATA
 
           // Send CSVDATA to the specified URL using axios
-          axios
-            .post("http://localhost:5010/api/data/bulk", { CSVDATA }, {
-              headers: {
-                "Content-Type": "application/json"
-              }
-            })
-            .then((response) => {
-              console.log("Data sent successfully:", response.data);
-            })
-            .catch((error) => {
-              console.error("Error sending data:", error);
-            });
+        
         } else {
           setCsvData([]);
           setJsonData([]);
@@ -75,14 +65,32 @@ const BulkAdd = () => {
       },
     });
   };
-
+  function handleAxios()
+  {
+    axios
+    .post("http://localhost:5010/api/data/bulk", { CSVDATA }, {
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+    .then((response) => {
+      console.log("Data sent successfully:", response.data);
+    })
+    .catch((error) => {
+      console.error("Error sending data:", error);
+    });
+  
+  }
   return (
     <div>
       <h2>Bulk Add</h2>
+    
       <input type="file" accept=".csv" onChange={handleFileUpload} />
+       
       {fileError && <p style={{ color: "red" }}>{fileError}</p>}
       {csvData.length > 0 && (
         <div>
+            <button className="btn btn-success" on onClick={handleAxios}>Add DataBase</button>
           <h3>CSV Data</h3>
           <table>
             <thead>

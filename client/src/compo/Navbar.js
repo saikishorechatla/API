@@ -15,8 +15,8 @@ const Navbar = () => {
         <ul className="navbar__list">
         <NavLink to="/bulkadd">
           <li
-            className={`navbar__item${activeItem === "add" ? " active" : ""}`}
-            onClick={() => handleItemClick("add") }
+            className={`navbar__item${activeItem === "bulkadd" ? " active" : ""}`}
+            onClick={() => handleItemClick("bulkadd") }
           >
             <span className="navbar__icon">➕➕</span>BulkAdd
           </li>

@@ -18,7 +18,7 @@ app.use(cors());
 require("dotenv").config(); 
 
 
-
+//limiting
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 
@@ -37,8 +37,8 @@ const db = mysql.createConnection({
 
 
 
-//Routes
 
+//Routes
 
 const dataRoute = require("./routes/data");
 app.use("/api/data", dataRoute);

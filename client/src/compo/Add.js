@@ -55,7 +55,7 @@ export default function Add() {
         <Form>
           <Form.Group className='mb-3' controlId='formBasicPassword'>
             <Form.Label>Select Your Image</Form.Label>
-            <Form.Control type='file' name='photo' onChange={setimgfile} />
+            <Form.Control type='file' accept=".png" name='photo' onChange={setimgfile} />
           </Form.Group>
           <Form.Group controlId='exampleForm.ControlSelect1'>
             <Form.Label>Select a Certificate</Form.Label>
