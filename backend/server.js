@@ -1,25 +1,44 @@
 const express = require("express");
 const mysql = require("mysql");
 const bodyParser = require("body-parser");
-const app = express();
 const cors = require("cors");
 
+
+
+//app
+
+const app = express();
 app.use(express.json());
 app.use(cors());
-require("dotenv").config(); // Load environment variables from .env file
+
+
+
+// Load environment variables from .env file
+
+require("dotenv").config(); 
+
+
 
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 
+
+//port number
 const port = process.env.SERVER_PORT;
 
-// Create a MySQL connection
+
+
 const db = mysql.createConnection({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_DATABASE,
 });
+
+
+
+//Routes
+
 
 const dataRoute = require("./routes/data");
 app.use("/api/data", dataRoute);
@@ -31,12 +50,17 @@ app.use("/uploads",express.static("./uploads"))
 
 
 // Connect to the database
+
+
 db.connect((err) => {
   if (err) throw err;
   console.log("MySQL database connected!");
 });
 
+
+
 // Start the server
+
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });

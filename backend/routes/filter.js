@@ -1,15 +1,12 @@
 const express = require("express");
 const router = express.Router();
 const bodyParser = require("body-parser");
-//conntion 
-const mysql = require("mysql");
-const db = mysql.createConnection({
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_DATABASE,
-  });
+const db =require("../connection/db.config")
+
+
 router.use(bodyParser.urlencoded({extended:true}))
+
+
 
 router.post('/filter/',
 async (req, res) => {
@@ -22,7 +19,7 @@ async (req, res) => {
       const sqlSetect = "select * from test1 where  title_of_certification=?"
       db.query(sqlSetect,c, (err, result) => {
           res.send(result);
-           
+
         });
     }
     else if(c===""&& certified ==="" )
@@ -31,7 +28,7 @@ async (req, res) => {
       const sqlSetect = "select * from test1 where  gender=?"
       db.query(sqlSetect,gender, (err, result) => {
           res.send(result);
-           
+
         });
     }
     else if(gender===""&&c==="")
@@ -41,7 +38,7 @@ async (req, res) => {
       const sqlSetect = "select * from test1 where  provide_link=?"
       db.query(sqlSetect,certified, (err, result) => {
           res.send(result);
-           
+
         });
     }
     
@@ -51,7 +48,7 @@ async (req, res) => {
       const sqlSetect = "SELECT *FROM test1 WHERE title_of_certification =?AND gender =?"
       db.query(sqlSetect,[c,gender] ,(err, result) => {
           res.send(result);
-           
+
         });
     }
     else if(gender==="")
@@ -60,7 +57,7 @@ async (req, res) => {
       const sqlSetect = "SELECT *FROM test1 WHERE title_of_certification =? AND  provide_link=?"
       db.query(sqlSetect,[c,certified] ,(err, result) => {
           res.send(result);
-           
+
         });
     }
     else if(c==="")
@@ -69,7 +66,7 @@ async (req, res) => {
       const sqlSetect = "SELECT *FROM test1 WHERE provide_link=? AND gender =?"
       db.query(sqlSetect,[certified,gender] ,(err, result) => {
           res.send(result);
-         
+
         });
     }
     else
@@ -78,7 +75,7 @@ async (req, res) => {
       const sqlSetect = "SELECT *FROM test1 WHERE title_of_certification=? AND gender =? AND provide_link=?"
       db.query(sqlSetect,[c,gender,certified] ,(err, result) => {
           res.send(result);
-           
+            
         });
     }
     
