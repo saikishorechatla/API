@@ -6,24 +6,45 @@ import { InputText } from 'primereact/inputtext'
 import {FilterMatchMode} from 'primereact/api'
 import "primereact/resources/themes/lara-light-indigo/theme.css"
 import "primereact/resources/primereact.min.css";
+import "../styles/table.css"
 export default function Table(props) {
   const [filters,setFilter]=useState({
     global:{value:null,matchMode:FilterMatchMode.CONTAINS},
   })
+  var all = props.data.length;
+ 
   return(
 
    <React.Fragment>
-    <CSVLink data={props.data} className="btn btn-primary">Export Data</CSVLink>
-     <div className='data_container'>
-<InputText onInput={(e)=>{
+   
+
+    
+    <table className='table_head'>
+      <tr>
+        <td>
+      <center>
+
+  
+    <CSVLink data={props.data} className="btn btn-success">Export Data</CSVLink>
+    </center>
+    </td>
+    <td>
+    <center>
+<InputText className="table_inputText" placeholder='Search' onInput={(e)=>{
    setFilter({
       global:{value :e.target.value ,matchMode: FilterMatchMode.CONTAINS}
    })
 }
 }/>
+</center>
+</td>
+</tr>
+</table>
+
 <br/>
+<div className='data_container'>
  <center>
- <DataTable value={props.data}   className='data_table' filters={filters}  paginator rows={100} rowsPerPageOptions={[200,300]} totalRecords={props.data}>
+ <DataTable value={props.data}   className='data_table' filters={filters}  paginator rows={100} rowsPerPageOptions={[200,300,all]} totalRecords={props.data}>
   <Column field="s_no" header="S_No" sortable > </Column>
   <Column field="Name_of_Faculty" header="Name" sortable> </Column>
   <Column field="campus" header="Campus" sortable> </Column>

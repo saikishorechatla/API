@@ -1,0 +1,7 @@
+/* In your Home.css or equivalent stylesheet */
+.no-bullets {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  

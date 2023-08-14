@@ -26,8 +26,9 @@ const Data = () => {
   return (
     <div className="data-container">
        
-
+      <center>
       <Table data={data}/>
+      </center>
 
     </div>
   );

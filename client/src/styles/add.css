@@ -1,4 +1,17 @@
 /* FileUploader.css */
+.add_Card{
+     width: 30%;
+     height: auto;
+     margin-top: 150px;
+     padding: 20px;
+     border: 2px solid;
+     box-shadow:5px 10px #000;
+     border-radius: 5px;
+}
+.add_lebel
+{
+  font-weight: bolder;
+}
 @keyframes spin {
     0% {
       transform: rotate(0deg);

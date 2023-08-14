@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import axios from 'axios';
+import '../styles/add.css' 
 
 export default function Add() {
   const [file, setFile] = useState('');
@@ -49,16 +50,17 @@ export default function Add() {
   };
 
   return (
-    <>
-      <div className='container mt-3'>
-        <h1>Upload Your Img Here</h1>
+    <center className='add_center'>
+    <div className='add_Card'>
+      <div className='container mt-3 '>
+       
         <Form>
           <Form.Group className='mb-3' controlId='formBasicPassword'>
-            <Form.Label>Select Your Image</Form.Label>
+            <Form.Label className='add_lebel'>Select Your Image</Form.Label>
             <Form.Control type='file' accept=".png" name='photo' onChange={setimgfile} />
           </Form.Group>
           <Form.Group controlId='exampleForm.ControlSelect1'>
-            <Form.Label>Select a Certificate</Form.Label>
+            <Form.Label className='add_lebel'>Select a Certificate</Form.Label>
             <Form.Control as='select' onChange={handleCertificateChange}>
             <option value="">Select</option>
           <option value="Certified Foundations Associate">Certified Foundations Associate</option>
@@ -69,7 +71,7 @@ export default function Add() {
             </Form.Control>
           </Form.Group>
           <Form.Group className='mb-3' controlId='formBasicText'>
-            <Form.Label>Enter Empid </Form.Label>
+            <Form.Label className='add_lebel'>Enter Empid </Form.Label>
             <Form.Control type='text' placeholder='Enter Empid' value={textInput} onChange={handleTextInputChange} />
           </Form.Group>
           <Button variant='primary' type='submit' onClick={addUserData}>
@@ -77,6 +79,7 @@ export default function Add() {
           </Button>
         </Form>
       </div>
-    </>
+      </div>
+    </center>
   );
 }
