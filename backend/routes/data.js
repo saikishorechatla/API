@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const multer = require("multer");
-const moment = require("moment")
+// const moment = require("moment")
 
 
 
@@ -104,6 +104,24 @@ router.get("/getdata",(req,res)=>{
        
     
     } catch (error) {
+        res.status(422).json({status:422,error})
+    }
+});
+
+router.post("/check",(req,res)=>{
+    const id=req.body.id
+    console.log(id)
+    try{
+        db.query("SELECT * FROM test1 where faculty_emp_iD=? limit 1",id,(err,result)=>{
+            if(err){
+                console.log("error")
+            }else{
+                console.log("data get")
+                res.status(201).json({status:201,data:result})
+            }
+            
+        })
+    }catch (error){
         res.status(422).json({status:422,error})
     }
 });
