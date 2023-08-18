@@ -1,13 +1,10 @@
 import React, { useState } from "react";
-import "../styles/navbar.css"; // Make sure to create the Navbar.css file with the necessary styles.
+import "../styles/navbar.css"; 
 import { NavLink } from "react-router-dom";
 import 'primeicons/primeicons.css';
-// import React, { useState } from "react";
-// import "../styles/navbar.css"; // Make sure to create the Navbar.css file with the necessary styles.
-// import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
-  const [activeItem, setActiveItem] = useState(""); // State to track the active item
+  const [activeItem, setActiveItem] = useState("admin"); 
 
   const handleItemClick = (item) => {
     setActiveItem(item);
@@ -33,7 +30,7 @@ const Navbar = () => {
               <span className="navbar__icon pi pi-plus"></span>BulkAdd
             </li>
           </NavLink>
-          <NavLink to="/add" style={{ textDecoration: "none" }}>
+          <NavLink to="/check" style={{ textDecoration: "none" }}>
             <li
               className={`navbar__item${activeItem === "add" ? " active" : ""}`}
               onClick={() => handleItemClick("add")}
@@ -70,6 +67,7 @@ const Navbar = () => {
             </li>
           </NavLink>
         </ul>
+        <div className="navbar__beta">Beta</div>
       </div>
     </nav>
   );

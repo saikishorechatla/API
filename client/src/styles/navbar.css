@@ -45,4 +45,22 @@
     margin-right: 5px;
   }
   
-  
+ /* Your existing CSS styles... */
+
+/* Add styles for the "Beta" text and flex container */
+/* Your existing CSS styles... */
+
+/* Add styles for the "Beta" text and flex container */
+.navbar__ul {
+  display: flex;
+  align-items: center;
+}
+
+.navbar__beta {
+  margin-left: auto;
+  font-size: 8px;
+  color: #020202;
+  padding: 3px 8px; /* Adjust padding */
+  border-radius: 15px; /* Adjust rounded corners */
+  background-color: #ffffff;
+}

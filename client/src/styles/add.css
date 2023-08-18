@@ -1,27 +1,40 @@
-/* FileUploader.css */
-.add_Card{
-     width: 30%;
-     height: auto;
-     margin-top: 150px;
-     padding: 20px;
-     border: 2px solid;
-     box-shadow:5px 10px #000;
-     border-radius: 5px;
+.add_center {
+  display: flex;
+  margin-top: 200px;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
-.add_lebel
-{
-  font-weight: bolder;
+
+.add_Card {
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 70%;
+  max-width: 600px;
+  background-color: #fff;
 }
-@keyframes spin {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
-  }
-  
-  .uploading {
-    animation: spin 1s linear infinite;
-  }
-  
+
+.addx_data-item {
+  margin-bottom: 20px;
+}
+
+.addx_label {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.addx_input {
+  font-size: 14px;
+  padding: 10px;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.addx_input[readonly] {
+  background-color: #f7f7f7;
+  cursor: not-allowed;
+}

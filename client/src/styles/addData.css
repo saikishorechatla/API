@@ -1,0 +1,41 @@
+.adddata_ {
+    width: 30%;
+    margin: 150px auto;
+    padding: 20px;
+    border: 2px solid;
+    box-shadow: 5px 10px #000;
+    border-radius: 5px;
+  }
+  
+  .adddata_lebel {
+    font-weight: bolder;
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .adddata_lebel,
+  .adddata_lebel input {
+    width: 100%;
+  }
+  
+  .adddata_lebel input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin-bottom: 10px;
+  }
+  
+  .adddata-send-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .adddata-send-button:hover {
+    background-color: #0056b3;
+  }
+  
