@@ -39,25 +39,76 @@ router.get("/", (req, res) => {
 });
     router.post("/add",upload.single("photo"),(req,res)=>{
     const {filename} = req.file;
-    const {  selectedCertificate,textInput } = req.body;
+    const {  selectedCertificate,id,vData,certifying_agency,remarks,certification_code } = req.body;
     
 
         
     if( !filename){
         res.status(422).json({status:422,message:"fill all the details"})
     }
+
+    console.log(selectedCertificate)
+    console.log(id);
+    console.log(JSON.parse(vData));
+    const vDataObject = JSON.parse(vData);
+    const k ='NA'
     
+    console.log(vDataObject[0].s_no);
     try {
 
-            db.query("INSERT INTO test2 (file,emp_id, title_of_certification) VALUES (?,?,?);",[filename,textInput, selectedCertificate],(err,result)=>{
+            db.query("INSERT INTO test1 (Name_of_Faculty, faculty_emp_iD ,title_of_certification ,certifying_agency ,gender ,provide_link ,certification_code ,remarks ,department ,campus)  VALUES (?,?,?,?,?,?,?,?,?,?);",[vDataObject[0].Name_of_Faculty,vDataObject[0].faculty_emp_iD,selectedCertificate,certifying_agency,vDataObject[0].gender,k,certification_code,remarks,vDataObject[0].department,vDataObject[0].campus],(err,result)=>{
 
             if(err){
                 console.log(err)
             }else{
-                console.log("data added")
-                res.status(201).json({status:201,data:req.body})
+                db.query("INSERT INTO test2 (file,emp_id,title_of_certification) values (?,?,?)",[filename,vDataObject[0].faculty_emp_iD,selectedCertificate],(err,result)=>{
+                    if(err){
+                        console.log(err)
+                    }else{
+                        console.log("data added")
+                        res.status(201).json({status:201,data:req.body})
+                    }
+                  })
             }
         })
+          
+    } catch (error) {
+        res.status(422).json({status:422,error})
+    }
+});
+router.post("/adddata",upload.single("photo"),(req,res)=>{
+    const {filename} = req.file;
+    const {  id,name,code,remarks,campus,agency,department,gender,title } = req.body;
+    
+
+        
+    if( !filename){
+        res.status(422).json({status:422,message:"fill all the details"})
+    }
+
+    
+    console.log(id);
+    const k ='NA'
+    
+
+    try {
+
+            db.query("INSERT INTO test1 (Name_of_Faculty, faculty_emp_iD ,title_of_certification ,certifying_agency ,gender ,provide_link ,certification_code ,remarks ,department ,campus)  VALUES (?,?,?,?,?,?,?,?,?,?);",[name,id,title,agency,gender,k,code,remarks,department,campus],(err,result)=>{
+
+            if(err){
+                console.log(err)
+            }else{
+                db.query("INSERT INTO test2 (file,emp_id,title_of_certification) values (?,?,?)",[filename,id,title],(err,result)=>{
+                    if(err){
+                        console.log(err)
+                    }else{
+                        console.log("data added")
+                        res.status(201).json({status:201,data:req.body})
+                    }
+                  })
+            }
+        })
+          
     } catch (error) {
         res.status(422).json({status:422,error})
     }

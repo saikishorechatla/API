@@ -1,6 +1,5 @@
 .add_center {
   display: flex;
-  margin-top: 200px;
   justify-content: center;
   align-items: center;
   height: 100vh;
