@@ -47,10 +47,7 @@ router.get("/", (req, res) => {
         res.status(422).json({status:422,message:"fill all the details"})
     }
 
-    console.log(selectedCertificate)
-    console.log(id);
-    console.log(JSON.parse(vData));
-    const vDataObject = JSON.parse(vData);
+    
     const k ='NA'
     
     console.log(vDataObject[0].s_no);
